@@ -5,9 +5,11 @@
     </div>
     <div class="content">
       <div>
-        <h1 class="title">Choose your dream destination...</h1>
+        <h1 class="title">Tickets</h1>
         <div class="links">
-        <nuxt-link v-for="destination in destinations" :to="{name: 'ticketList', params: {code: destination.code}}"><a  class="giant-button"> {{destination.name}} </a></nuxt-link>
+        <ul>
+            <li v-for="ticket in tickets">{{ticket.to}} - {{ticket.flight}} - {{ticket.seat}} </li>
+        </ul>        
         </div>
       </div>
     </div>
@@ -21,20 +23,19 @@ import {mapMutations, mapActions,mapGetters} from 'vuex';
 export default {
   data () {
     return {      
-       //destinations: []
     }
   },
   computed:{
-    destinations(){
-      return this.$store.getters.destinations.filter(dest => dest.isDreamDestination == true);
+    tickets(){
+      return this.$store.getters.tickets;
     }
   },
   mounted:function() {
-  this.getDestinations();  
+    this.getTickets(this.$route.params.code);  
   },
   methods: {
     ...mapActions([
-      'getDestinations'
+      'getTickets'
     ])
   }
 }
