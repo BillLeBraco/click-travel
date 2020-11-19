@@ -14,7 +14,6 @@ export const actions = {
         apiTravel.get('/destinations').then((response) => state.commit('setDestinations',response.data))
     },   
     getTickets(state,dest){
-        console.log(dest)
         apiTravel.get('/tickets?filter={"offset": 0,"limit": 100,"skip": 0,"where": {"to": "'+dest+'"}}').then((response) => state.commit('setTickets',response.data))        
     }
 }

@@ -1,0 +1,49 @@
+.ticket {
+    width: 1000px;
+    border-radius: 25px;
+    background-color: rgb(0, 140, 255);
+ 
+    .header {
+        color: white;
+        padding-left: 1em;
+    }
+ 
+    .body {
+        background-color: whitesmoke;
+        padding: 1em;
+ 
+        h2 {
+            color: gray;
+            font-size: medium;
+            font-weight: 400;
+        }
+ 
+        #second {
+            margin-top: 2em;
+            display: flex;
+ 
+            #from, #to, #class {
+                margin-left: 5em;
+            }
+        }
+ 
+        #third {
+            margin-top: 2em;
+            display: flex;
+ 
+            #time, #seat {
+                margin-left: 2em;
+            }
+ 
+            .big {
+                font-size: 2em;
+                font-weight: bold;
+                background-color: white;
+            }
+        }
+    }
+ 
+    .footer {
+        height: 50px;
+    }
+}

@@ -8,10 +8,11 @@
         <h1 class="title">Tickets</h1>
         <div class="links">
         <ul>
-            <li v-for="ticket in tickets">{{ticket.to}} - {{ticket.flight}} - {{ticket.seat}} </li>
+            <li @click="selectTicket(ticket)" v-for="ticket in tickets">{{ticket.to}} - {{ticket.flight}} - {{ticket.seat}} </li>
         </ul>        
         </div>
       </div>
+      <Ticket v-bind:ticket ='selectedTicket'/>
     </div>
   </div>
 </template>
@@ -19,10 +20,15 @@
 <script>
 import Vue from 'vue'
 import {mapMutations, mapActions,mapGetters} from 'vuex';
+import Ticket from '@/components/ticket'
  
 export default {
+    components: {
+      Ticket
+    },
   data () {
-    return {      
+    return {  
+        selectedTicket:{}    
     }
   },
   computed:{
@@ -36,7 +42,10 @@ export default {
   methods: {
     ...mapActions([
       'getTickets'
-    ])
+    ]),
+    selectTicket: function(ticket){
+        this.selectedTicket = ticket;
+    }
   }
 }
 </script>
