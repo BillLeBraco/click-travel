@@ -7,10 +7,10 @@
       <div>
         <h1 class="title">Choose your dream destination...</h1>
         <div class="links">
-          <a href="#" class="giant-button"> San Francisco, USA </a>
-          <a href="#" class="giant-button"> Québec, Canada </a>
+          <a href="#" v-for="destination in destinations" class="giant-button"> {{destination.name}} </a>
+        <!--  <a href="#" class="giant-button"> Québec, Canada </a>
           <a href="#" class="giant-button"> Bora Bora, Polynésie </a>
-          <a href="#" class="giant-button"> Torres del Paine, Chile </a>
+          <a href="#" class="giant-button"> Torres del Paine, Chile </a>-->
         </div>
       </div>
     </div>
@@ -18,7 +18,29 @@
 </template>
 
 <script>
-export default {}
+import Vue from 'vue'
+import {mapMutations, mapActions,mapGetters} from 'vuex';
+ 
+export default {
+  data () {
+    return {      
+       //destinations: []
+    }
+  },
+  computed:{
+    destinations(){
+      return this.destinations = this.$store.getters.destinations.filter(dest => dest.isDreamDestination == true);
+    }
+  },
+  mounted:function() {
+  this.getDestinations();  
+  },
+  methods: {
+    ...mapActions([
+      'getDestinations'
+    ])
+  }
+}
 </script>
 
 <style lang="scss">
